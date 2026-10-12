@@ -5,13 +5,13 @@
 // Deliberately simple: no LLM calls, no entity extraction, no title
 // synthesis. Just turns the raw transcript into readable text and archives
 // it. Pulling people/topics/decisions out of the content is a separate,
-// later step — see scripts/nightly-extract.mjs.
+// later step — see scripts/nightly-extract-people.mjs.
 //
 // Usage:
 //   Hook mode (recommended): wire this as a Claude Code "Stop" hook. Claude
 //   Code sends a JSON payload on stdin with a transcript_path field.
 //
-//   Manual mode: node archive-session.mjs <path-to-session.jsonl>
+//   Manual mode: node archive-claude-session.mjs <path-to-session.jsonl>
 //
 // Config (env vars, all optional):
 //   VAULT_DIR          Root of your vault. Default: ./vault
@@ -158,7 +158,7 @@ async function main() {
   const arg = process.argv[2];
 
   if (arg) {
-    // Manual test mode: node archive-session.mjs <path-to-session.jsonl>
+    // Manual test mode: node archive-claude-session.mjs <path-to-session.jsonl>
     const out = archiveSession(arg);
     if (out) console.log(`Archived: ${out}`);
     return;

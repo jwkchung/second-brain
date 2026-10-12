@@ -29,7 +29,7 @@ rules you can read and edit.
 
 ## Phase 1 (what's here today)
 
-- **`scripts/archive-session.mjs`** — a Claude Code `Stop` hook. Reads the
+- **`scripts/archive-claude-session.mjs`** — a Claude Code `Stop` hook. Reads the
   hook's JSON payload from stdin, pulls the session transcript
   (`~/.claude/projects/**/*.jsonl`), strips it down to the human-readable
   turns (skipping subagent chatter and pure tool calls), and writes one
@@ -37,7 +37,7 @@ rules you can read and edit.
   `session_id`). Idempotent — re-running on the same session replaces its
   file rather than duplicating it, since a session can fire `Stop` more than
   once (`--resume`, retries).
-- **`scripts/nightly-extract.mjs`** — a batch job (bring your own
+- **`scripts/nightly-extract-people.mjs`** — a batch job (bring your own
   scheduler — cron, launchd, systemd timer) that looks at conversation files
   modified since its last successful run, and if there are any, spawns
   `claude -p` with a locked-down tool allowlist to read them and update
@@ -55,10 +55,10 @@ rules you can read and edit.
   (proper frontmatter, drop the `update-person-file/` directory into your
   `skills/` directory and Claude Code will pick it up) — so you can invoke
   it two ways: directly in conversation ("update Mike's file with this"),
-  or unattended, since `nightly-extract.mjs` pastes this same file into its
+  or unattended, since `nightly-extract-people.mjs` pastes this same file into its
   batch prompt. Both paths follow identical rules; edit the one file to
   change either.
-- **`scripts/macos-schedule-wake.sh`** — optional, macOS-only. If you run the
+- **`scripts/schedule_tomorrow_wake.sh`** — optional, macOS-only. If you run the
   nightly job on a laptop that might be asleep at the scheduled hour, this
   renews a one-off `pmset schedule wake` entry so the machine is awake for
   it. Irrelevant on an always-on machine or server.
@@ -90,7 +90,7 @@ cd second-brain
            "hooks": [
              {
                "type": "command",
-               "command": "VAULT_DIR=/path/to/your/vault node /path/to/second-brain/scripts/archive-session.mjs"
+               "command": "VAULT_DIR=/path/to/your/vault node /path/to/second-brain/scripts/archive-claude-session.mjs"
              }
            ]
          }
@@ -100,10 +100,10 @@ cd second-brain
    ```
 3. Schedule the nightly job (cron example, 3am daily):
    ```cron
-   0 3 * * * VAULT_DIR=/path/to/your/vault node /path/to/second-brain/scripts/nightly-extract.mjs
+   0 3 * * * VAULT_DIR=/path/to/your/vault node /path/to/second-brain/scripts/nightly-extract-people.mjs
    ```
    On macOS, if the machine sleeps, also schedule
-   `scripts/macos-schedule-wake.sh` to run daily (as root, via
+   `scripts/schedule_tomorrow_wake.sh` to run daily (as root, via
    LaunchDaemon — `pmset schedule` requires root) a few minutes before the
    extraction job.
 

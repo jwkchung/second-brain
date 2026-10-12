@@ -5,8 +5,8 @@
   "type": "module",
   "license": "MIT",
   "bin": {
-    "archive-session": "./scripts/archive-session.mjs",
-    "nightly-extract": "./scripts/nightly-extract.mjs"
+    "archive-claude-session": "./scripts/archive-claude-session.mjs",
+    "nightly-extract-people": "./scripts/nightly-extract-people.mjs"
   },
   "engines": {
     "node": ">=18"

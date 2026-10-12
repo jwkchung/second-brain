@@ -7,7 +7,7 @@ description: Create or update a person file in the vault (default location vault
 
 This skill has two callers: you, invoked directly in a conversation when the
 user mentions wanting to update, create, or look at someone's file; and
-`scripts/nightly-extract.mjs`, which pastes this same file into a prompt and
+`scripts/nightly-extract-people.mjs`, which pastes this same file into a prompt and
 runs it unattended against newly-archived conversations. Follow the rules
 below the same way regardless of which one invoked you — the "Creating files
 from bulk or automated sources" section is what changes the bar, not a

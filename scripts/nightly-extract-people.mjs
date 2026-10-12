@@ -7,7 +7,7 @@
 // not per session. This deliberately does NOT hook SessionEnd: SessionEnd has
 // no documented guarantee on crashes/hard kills, and a nightly batch avoids
 // race conditions between parallel sessions. It reads from the archive that
-// the (reliable, per-turn) Stop hook already produced — see archive-session.mjs.
+// the (reliable, per-turn) Stop hook already produced — see archive-claude-session.mjs.
 //
 // Uses a real model call (via the `claude` CLI, so it rides your existing
 // subscription rather than separate API billing) because this step needs

@@ -1,6 +1,6 @@
 #!/bin/bash
 # Optional macOS-only helper. Renews a one-off `pmset schedule wake` event so
-# the Mac is awake for your nightly extraction job (scripts/nightly-extract.mjs)
+# the Mac is awake for your nightly extraction job (scripts/nightly-extract-people.mjs)
 # even if the laptop is closed/asleep at that time. Irrelevant if your
 # scheduler already runs on an always-on machine or server.
 #
@@ -13,7 +13,7 @@
 # `pmset schedule wake` entries are additive, so this won't clobber any other
 # wake schedule you already have.
 #
-# Run manually to check/renew immediately: scripts/macos-schedule-wake.sh
+# Run manually to check/renew immediately: scripts/schedule_tomorrow_wake.sh
 
 set -euo pipefail
 

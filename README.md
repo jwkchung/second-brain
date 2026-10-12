@@ -1,4 +1,4 @@
-# claude-vault-pipeline
+# second-brain
 
 Turn every Claude Code session into durable, structured notes in a local
 Markdown vault (e.g. an Obsidian vault) — automatically, with no manual
@@ -73,7 +73,7 @@ extraction target (people) out of the box.
 
 ```bash
 git clone <this-repo>
-cd claude-vault-pipeline
+cd second-brain
 ```
 
 1. Point a vault at it (or let it create `./vault` on first run):
@@ -90,7 +90,7 @@ cd claude-vault-pipeline
            "hooks": [
              {
                "type": "command",
-               "command": "VAULT_DIR=/path/to/your/vault node /path/to/claude-vault-pipeline/scripts/archive-session.mjs"
+               "command": "VAULT_DIR=/path/to/your/vault node /path/to/second-brain/scripts/archive-session.mjs"
              }
            ]
          }
@@ -100,7 +100,7 @@ cd claude-vault-pipeline
    ```
 3. Schedule the nightly job (cron example, 3am daily):
    ```cron
-   0 3 * * * VAULT_DIR=/path/to/your/vault node /path/to/claude-vault-pipeline/scripts/nightly-extract.mjs
+   0 3 * * * VAULT_DIR=/path/to/your/vault node /path/to/second-brain/scripts/nightly-extract.mjs
    ```
    On macOS, if the machine sleeps, also schedule
    `scripts/macos-schedule-wake.sh` to run daily (as root, via

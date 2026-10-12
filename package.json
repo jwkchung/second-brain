@@ -1,5 +1,5 @@
 {
-  "name": "claude-vault-pipeline",
+  "name": "second-brain",
   "version": "0.1.0",
   "description": "Archive Claude Code sessions to a Markdown vault, then nightly-extract structured notes from them via a subagent following a written skill file.",
   "type": "module",

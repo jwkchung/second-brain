@@ -62,7 +62,10 @@ recruiter, tenant, vendor, family, friend, colleague). `company` (or an
 employer field) describes who they work for. Never conflate the two — don't
 write a relationship into the company field (e.g. `company: (fiance)`) as a
 workaround for not having a relationship field. If both are true (a friend
-who is also a tenant), record both.
+who is also a tenant), record both. Once a `companies/` entity type exists
+(see `update-company-file`), `company` should hold a wikilink to that file
+(e.g. `company: "[[acme-corp]]"`, quoted so YAML doesn't parse it as a
+list) rather than a plain string.
 
 ### Unresolved identities
 If a source only gives a raw internal id with no real name attached (e.g. a
@@ -81,6 +84,20 @@ the body (dedupe "Key facts," keep all "Recent context" entries, flag
 contradictions per the rule below). Delete the other file — don't leave a
 stale duplicate around "just in case" — and fix anything that linked to its
 old slug.
+
+## Linking to other entities
+When a Key fact or Recent context entry mentions another person, company,
+or project that already has its own file, wikilink the first mention of
+them in that bullet (`[[their-slug]]`), using the same identifier-lookup
+discipline as the identity-merge protocol above — never guess a slug, never
+create a link to a file that doesn't exist. Don't re-link the same entity
+repeatedly within one file; once per bullet where they're mentioned is
+enough. Do not add a dedicated "Related projects" or "Related people" list
+section to the file structure below — let relatedness surface inline,
+where the fact actually lives, not in a separately maintained list that
+drifts out of sync. The reverse direction (who links to this person)
+doesn't need maintaining by hand either — that's what your vault tool's
+backlinks panel is for (e.g. Obsidian).
 
 ## File structure
 Every person file uses these sections, in this order:

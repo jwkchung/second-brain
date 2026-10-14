@@ -69,12 +69,14 @@ synthesis at archive time (that's a model-judgment step, kept separate and
 batched), no hosted/third-party memory store, no attempt to resolve identity
 across sources beyond what each skill file's protocol covers.
 
-## Phase 2 (just landed)
+## Phase 2 (closed)
 
 Phase 1 shipped with a single extraction target (people). Phase 2 asked the
 obvious next question — now that the pipeline has run for real against real
 conversations, is "people" actually the only entity worth a file? — and
-answered it by adding two more, plus the linking between all three:
+closed it out by adding two more, plus the linking between all three, each
+verified against a real nightly run (not just a manual smoke test) before
+being called done:
 
 - **`skills/update-company-file/SKILL.md`** and
   **`skills/update-project-file/SKILL.md`** — two more Skills, same shape as
